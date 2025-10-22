@@ -1,14 +1,17 @@
-# Use a lightweight Python image
-FROM python:3.11-slim
+# Use an official lightweight Python image
+FROM python:3.10-slim
 
-# Set working directory
+# Set working directory inside container
 WORKDIR /app
 
-# Copy project files
+# Copy files into container
 COPY . .
 
-RUN pip install flask redis
+# Install dependencies
+RUN pip install --no-cache-dir flask redis gunicorn
 
+# Expose the Flask port
+EXPOSE 5000
 
-# Run Flask app
-CMD ["python", "app.py"]
+# Run Flask app with Gunicorn (production-grade WSGI server)
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]

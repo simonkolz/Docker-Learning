@@ -1,22 +1,29 @@
-import os
-from flask import Flask
+from flask import Flask, render_template, jsonify
 import redis
 
 app = Flask(__name__)
-redis_host = os.getenv('REDIS_HOST', 'redis')
-redis_port =int(os.getenv('REDIS_PORT', 6379 ))
-# Connect to Redis
-# (use "redis" as the hostname if you use Docker Compose)
-r = redis.Redis(host=redis_host, port=redis_port)
+
+# Connect to Redis (hostname matches the service name in docker-compose)
+r = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
 
 @app.route('/')
 def home():
-    return "Welcome to the Flask + Redis app!"
+    # Display the main page
+    return render_template('index.html')
 
 @app.route('/count')
 def count():
-    visits = r.incr('visits')  # increment the "visits" key by 1
-    return f"This page has been visited {visits} times."
+    # Increment visit counter
+    visits = r.incr('visits')
+    # Render the classy HTML page instead of JSON
+    return render_template('count.html', visits=visits)
+
+
+@app.route('/get_count')
+def get_count():
+    # Get current count (without incrementing)
+    visits = r.get('visits') or 0
+    return jsonify({'visits': visits})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

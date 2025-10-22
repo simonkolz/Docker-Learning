@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Visit Counter</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 15px;
+      padding: 40px 60px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(0, 255, 200, 0.2);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.8s ease;
+    }
+
+    h1 {
+      color: #00ffc6;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .count {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #00ffc6;
+      text-shadow: 0 0 15px #00ffc6;
+      animation: pop 0.5s ease;
+    }
+
+    .btn-home {
+      margin-top: 30px;
+      background-color: #00ffc6;
+      border: none;
+      color: #000;
+      font-weight: 500;
+      border-radius: 30px;
+      padding: 10px 25px;
+      transition: 0.3s;
+    }
+
+    .btn-home:hover {
+      background-color: #00cfa5;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Visit Tracker 🧭</h1>
+    <p class="lead">You’ve visited the Welcome Page</p>
+    <div class="count">{{ visits }}</div>
+    <p class="text-secondary mt-2">time{{ 's' if visits|int > 1 else '' }}</p>
+    <a href="/" class="btn btn-home mt-3">⬅ Back to Home</a>
+  </div>
+
+</body>
+</html>

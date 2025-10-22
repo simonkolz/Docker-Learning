@@ -1,0 +1,17 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+  color: #00ffc6;
+  text-shadow: 0 0 10px #00ffc6;
+}
+
+#count {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+#count:hover {
+  transform: scale(1.1);
+  color: #ff4081;
+}
