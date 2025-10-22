@@ -1,4 +1,4 @@
-# docker-learning
+# Docker-learning
 
 This repository documents my hands-on learning journey with Docker through two containerized mini-projects.  
 Each project demonstrates a different use case and key Docker concepts — from building images and composing services to networking and scaling.
@@ -36,7 +36,7 @@ Each project demonstrates a different use case and key Docker concepts — from 
        # Run the Flask container
        docker run -p 5002:5002 --network my-app-network hello-flask-mysql
 
-2. flask-challenge/
+2. CoderCo-docker-challenge/
    A multi-container Docker app using Flask, Redis, and NGINX.  
    It counts how many times a user visits the page and demonstrates container communication, networking, load balancing, and scaling.
 
@@ -60,8 +60,12 @@ Each project demonstrates a different use case and key Docker concepts — from 
        docker compose up --build --scale web=3
 
    Then visit:
-       http://localhost:5000        -> Welcome + current visit count
-       http://localhost:5000/count  -> Explanation of how the project was built with tech breakdown
+       http://localhost:5000        -> The Welcome page
+   or
+       http://localhost:5000/count  -> The Tracking page
+<img width="760" height="416" alt="Screenshot 2025-10-22 at 13 55 55" src="https://github.com/user-attachments/assets/866d2eae-e92f-4d64-a740-06e1893b7542" />
+
+<img width="775" height="550" alt="Screenshot 2025-10-22 at 13 56 28" src="https://github.com/user-attachments/assets/ebeeb7ef-a28c-46b5-8aa8-b8dba5ff6112" />
 
 ## Why I Built These
 
@@ -73,7 +77,7 @@ I created these apps to:
 
 ## Tech Stack Summary
 
-| Concept       | hello_flask           | flask-challenge              |
+| Concept       | hello_flask           | CoderCo-docker-challenge              |
 |----------------|------------------------|------------------------------|
 | Language       | Python (Flask)         | Python (Flask)              |
 | Backend        | MySQL                  | Redis                       |
